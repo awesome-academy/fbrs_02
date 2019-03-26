@@ -1,4 +1,4 @@
-class Admin::BooksController < ApplicationController
+class Admin::BooksController < Admin::BaseController
   layout "admin"
   before_action :load_book, except: %i(index new create)
 

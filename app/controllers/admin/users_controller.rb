@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::BaseController
   layout "admin"
   before_action :load_user, only: :destroy
 
