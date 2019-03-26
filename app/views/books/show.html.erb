@@ -66,23 +66,14 @@
                     </div>
                     <span>
                     <div class="like-unlike">
-                      <div class="count_like">
-                        <i><b><%= @book.likes.size %></b> <i class="fas fa-thumbs-up"></i></i>
+                      <div class=" count_like_<%= @book.id %> fa fa-thumbs-up fa-2x count_like ">
+                        <%= @book.likes.count %>
                       </div>
-                      <% if logged_in? %>
-                        <% if like? @book %>
-                          <%= link_to like_path(book_id: @book.id), method: :delete,
-                            class: "btn btn-danger" do %>
-                            <%= t "view.books.show.unlike" %>
-                          <% end %>
-                        <% else %>
-                          <%= render "likes/like" %>
+                      <div id="like" class="like_<%= @book.id %>">
+                        <% if logged_in? %>
+                          <%= render partial: "likes/like", local:{book: @book} %>
                         <% end %>
-                      <% else %>
-                        <%= link_to login_path do %>
-                          <%= render "likes/like" %>
-                        <% end %>
-                      <% end %>
+                      </div>
                     </div>
                     <div><%= t "view.books.show.base" %>
                       <%= t("count_review", count: @book.reviews.size) %>

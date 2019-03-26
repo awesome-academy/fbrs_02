@@ -1,8 +1,8 @@
 class BooksController < ApplicationController
-  before_action :logged_in_user, except: %i(index show filter)
-  before_action :load_book, :build_like, except: %i(index filter create)
-  before_action :admin_user, except: %i(index show filter)
-  before_action :book_by_category, only: %i(show filter)
+  before_action :logged_in_user, except: %i(index show filter search_like search)
+  before_action :load_book, :build_like, except: %i(index filter create search search_like)
+  before_action :admin_user, except: %i(index show filter search_like)
+  before_action :load_book_by_category, only: %i(show filter)
 
   def index
     @books = Book.newest
@@ -16,6 +16,11 @@ class BooksController < ApplicationController
   end
 
   def filter; end
+
+  def search_like
+    @like_book_ids = current_user.likes.pluck(:book_id)
+    @search_like = Book.by_like_book(@like_book_ids)
+  end
 
   def search
     @books = Book.by_author_title(params[:search])
@@ -50,7 +55,7 @@ class BooksController < ApplicationController
     redirect_to(root_url) unless current_user.admin?
   end
 
-  def book_by_category
+  def load_book_by_category
     @books = Book.by_category(params[:category]).limit Settings.models.limit
   end
 end
