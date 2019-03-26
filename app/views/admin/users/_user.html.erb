@@ -1,9 +1,30 @@
-<tr class=" gradeX">
-  <td id="catId"><%= user.id %></td>
-  <td><%= user.name %></td>
-  <td><%= user.email %></td>
-  <td class="center">
-    <%= link_to t(".delete"), admin_user_path(user), method: :delete,
-     data:{confirm: t("sure")}, class: "fa fa-trash btn btn-danger " %>
-  </td>
-</tr>
+<div id="update_<%= user.id %>" >
+  <table>
+  <thead>
+    <tr>
+      <th class="id"><%= t ".id" %></th>
+      <th class="name"><%= t ".user_name" %></th>
+      <th><%= t ".email" %></th>
+      <th id="action-s"><%= t ".action" %></th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr class="gradeX">
+    <td id="catId"><%= user.id %></td>
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
+    <% if current_user.admin? && user.id == current_user.id %>
+      <td>Admin</td>
+    <% else %>
+      <td class="center">
+          <%= link_to t(".delete"), admin_user_path(user), method: :delete,
+           data:{confirm: t("sure")}, class: "fa fa-trash btn btn-danger " %>
+          <%= link_to user.admin? ? " set user" : " set admin",
+            admin_user_path(user),method: :patch, remote: true,
+            class: "fa fa-check btn btn-success" %>
+      </td>
+    <% end %>
+  </tr>
+    </tbody>
+</table>
+</div>

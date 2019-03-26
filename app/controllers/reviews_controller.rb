@@ -49,5 +49,4 @@ class ReviewsController < ApplicationController
     flash[:danger] = t "controller.no_data_review"
     redirect_to root_path
   end
-
 end
