@@ -3,7 +3,7 @@ class LikesController < ApplicationController
   before_action :load_unlike, only: :destroy
 
   def create
-    unless check_like?
+    unless is_current_user_liked?
       @like = current_user.likes.create(book_id: @book.id)
       # target_activity @like
       respond_to do |format|
