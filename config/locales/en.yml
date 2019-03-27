@@ -112,6 +112,7 @@ en:
       unlike_success: "Unlike a book success"
       unlike_fail: "Unlike a book fail"
       load_like: "Sorry, no like"
+      un_like: "Sorry, not unlike"
     admin:
       fail: "data not found"
   view:
