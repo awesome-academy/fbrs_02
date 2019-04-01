@@ -6,4 +6,16 @@ module BooksHelper
   def load_categories
     Category.sort_by_name
   end
+
+  def count_book
+    Book.count
+  end
+
+  def count_user
+    User.count
+  end
+
+  def count_like
+    Like.count
+  end
 end
