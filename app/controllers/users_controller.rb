@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource
   before_action :load_user, only: :show
   before_action :load_follow, :load_unfollow, only: %i(following followers show)
 
