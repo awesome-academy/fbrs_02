@@ -5,7 +5,6 @@ class BooksController < ApplicationController
   before_action :build_reviews, only: :show
   load_and_authorize_resource
 
-
   def index
     @books = Book.newest
     @book_news = Book.newest.paginate page: params[:page],
