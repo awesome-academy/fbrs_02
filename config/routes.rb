@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   get "books/show", to: "books#show"
-  get "books/find", to: "books#find"
+  get "books/filter", to: "books#filter"
   get "sessions/new"
   get "users/new"
   get "/signup", to: "users#new"

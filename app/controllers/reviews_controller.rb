@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :load_book, only: %i(create destroy)
   before_action :load_review, only: :destroy
+  before_action :logged_in_user, only: %i(new create destroy)
   load_and_authorize_resource
 
   def new; end
@@ -49,4 +50,5 @@ class ReviewsController < ApplicationController
     flash[:danger] = t "controller.no_data_review"
     redirect_to root_path
   end
+
 end
