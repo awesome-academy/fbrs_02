@@ -13,7 +13,7 @@
     <td id="catId"><%= user.id %></td>
     <td><%= user.name %></td>
     <td><%= user.email %></td>
-    <% if current_user.admin? && user.id == current_user.id %>
+    <% if not_set_user_himself user %>
       <td>Admin</td>
     <% else %>
       <td class="center">

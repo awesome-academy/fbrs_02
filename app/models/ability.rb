@@ -10,6 +10,7 @@ class Ability
       can :read, :all
       can :update, User, user_id: user.id
       can :manage, Suggest
+      can [:show, :filter], Book
       can :manage, Review, user_id: user.id
       can :manage, Comment, user_id: user.id
       can [:create, :destroy], Like
