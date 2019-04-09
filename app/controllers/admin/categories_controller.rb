@@ -3,9 +3,8 @@ class Admin::CategoriesController < Admin::BaseController
   before_action :find_category, only: %i(destroy update)
   authorize_resource
 
-
   def index
-    @categories = Category.sort_by_name.paginate page: params[:page],
+    @categories = Category.sort_by_name.with_deleted.paginate page: params[:page],
      per_page: Settings.per_page
   end
 
