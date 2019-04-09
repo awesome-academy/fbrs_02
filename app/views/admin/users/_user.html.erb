@@ -17,11 +17,10 @@
       <td>Admin</td>
     <% else %>
       <td class="center">
-          <%= link_to t(".delete"), admin_user_path(user), method: :delete,
-           data:{confirm: t("sure")}, class: "fa fa-trash btn btn-danger " %>
-          <%= link_to user.admin? ? " set user" : " set admin",
-            admin_user_path(user),method: :patch, remote: true,
-            class: "fa fa-check btn btn-success" %>
+        <%= link_to t(".delete"), admin_user_path(user), method: :delete,
+         data:{confirm: t("sure")}, class: "fa fa-trash btn btn-danger " %>
+        <%= link_to user.admin? ? " set user" : " set admin",
+          admin_user_path(user),method: :patch, remote: true, class: "fa fa-check btn btn-success" %>
       </td>
     <% end %>
   </tr>
