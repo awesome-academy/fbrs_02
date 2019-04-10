@@ -3,8 +3,9 @@ class Admin::UsersController < Admin::BaseController
   before_action :load_user, only: %i(destroy update)
 
   def index
-    @users = User.sort_by_created_at.paginate page: params[:page],
-      per_page: Settings.controllers.user.index_page_admin
+    @search = User.search params[:q]
+    @users = @search.result.sort_by_created_at.paginate page: params[:page],
+     per_page: Settings.controllers.user.index_page_admin
     respond_to do |format|
       format.html
       format.csv{send_data @users.to_csv, filename: "users-#{Date.today}.csv"}
