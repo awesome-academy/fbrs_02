@@ -124,6 +124,9 @@ ActiveRecord::Schema.define(version: 2019_03_31_153823) do
     t.string "phone"
     t.string "address"
     t.integer "role", default: 0
+    t.string "provider"
+    t.string "uid"
+    t.string "picture"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
